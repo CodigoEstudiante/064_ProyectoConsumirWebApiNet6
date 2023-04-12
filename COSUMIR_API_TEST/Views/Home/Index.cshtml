@@ -1,0 +1,51 @@
+﻿@model List<Producto>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    @*<p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>*@
+</div>
+
+
+<div class="card">
+    <div class="card-header">
+        Lista de productos
+    </div>
+    <div class="card-body">
+
+        <a asp-action="Producto" asp-controller="Home" asp-route-idProducto="0" class="btn btn-success btn-sm">Nuevo producto</a>
+        @*<a asp-action="test" asp-controller="Home" class="btn btn-success">test</a>*@
+        <hr />
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Codigo Barra</th>
+                    <th>Nombre</th>
+                    <th>Marca</th>
+                    <th>Categoria</th>
+                    <th>Precio</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model){
+                    <tr>
+                        <td>@item.CodigoBarra</td>
+                        <td>@item.Nombre</td>
+                        <td>@item.Marca</td>
+                        <td>@item.Categoria</td>
+                        <td>@item.Precio</td>
+                        <td>
+                            <a asp-action="Producto" asp-controller="Home" asp-route-idProducto="@item.IdProducto" class="btn btn-primary btn-sm" >Editar</a>
+                            <a asp-action="Eliminar" asp-controller="Home" asp-route-idProducto="@item.IdProducto" class="btn btn-danger btn-sm" >Eliminar</a>
+                            
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
